@@ -52,7 +52,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Like');
     }
 
-    
+
     // Rest omitted for brevity
 
     /**
@@ -73,5 +73,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function setPasswordAttribute($value) 
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 }
