@@ -4,12 +4,20 @@
             <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
             <v-toolbar-title>Bitfumes</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-toolbar-items class="hidden-sm-and-down">
-                <v-btn flat>Forum</v-btn>
-                <v-btn flat>Ask question</v-btn>
-                <v-btn flat>Category</v-btn>
-                <v-btn flat>Login</v-btn>
-            </v-toolbar-items>
+            <div class="hidden-sm-and-down">
+                <router-link to="#">
+                    <v-btn text>Forum</v-btn>
+                </router-link>
+                 <router-link to="#">
+                    <v-btn text>Ask question</v-btn>
+                </router-link>
+                 <router-link to="#">
+                    <v-btn text>Category</v-btn>
+                </router-link>
+                 <router-link to="/login">
+                    <v-btn text>Login</v-btn>
+                </router-link>
+            </div>
         </v-toolbar>
     </div>
 </template>

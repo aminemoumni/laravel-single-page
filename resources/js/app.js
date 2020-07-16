@@ -38,6 +38,6 @@ import AppHome from './components/AppHome';
 const app = new Vue({
     el: '#app',
     vuetify: new Vuetify(),
-    router,
+    router: router,
     
 });
