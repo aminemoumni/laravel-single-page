@@ -39,11 +39,17 @@ class User {
             return AppStorage.getUser()
         }
     }
-   id(){
+    id(){
         if(this.loggedIn()){
             const payload = Token.payload(AppStorage.getToken())
             return payload.sub
         }
+    }
+    own(id){
+        return this.id() == id
+    }
+    admin(){
+        return this.id() == 12
     }
 }
 

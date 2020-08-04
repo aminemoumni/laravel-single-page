@@ -37,7 +37,7 @@ export default {
             form: {
                 email:null,
                 password:null
-            }
+            },
         }
     },
     created() {

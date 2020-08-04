@@ -6,12 +6,14 @@ use App\Http\Resources\QuestionResource;
 use App\Question;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class QuestionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('JWT', ['only' => ['index', 'show']]);
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
     }
     /**
      * Display a listing of the resource.
@@ -41,7 +43,18 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        Question::create($request->all());   
+        //Question::create($request->all());   
+        $question = new Question();
+
+        $question->title = $request->input('title');
+        $question->body = $request->input('body');
+        $question->slug = Str::slug($request->input('title'), '-');
+        $question->user_id = Auth::user()->id;
+        $question->category_id = $request->input('category_id');
+
+        $question->save();
+
+        return response(new QuestionResource($question), Response::HTTP_CREATED);
     }
 
     /**
@@ -75,7 +88,14 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $question->title = $request->input('title');
+        $question->body = $request->input('body');
+        $question->slug = Str::slug($request->input('title'), '-');
+        $question->category_id = $request->input('category_id');
+
+        $question->save();
+
+        return response(new QuestionResource($question), Response::HTTP_CREATED);
     }
 
     /**

@@ -24,7 +24,7 @@ export default {
             items: [
                 {title: 'Form', to: '/forum', show: true},
                 {title: 'Ask Quetion', to: '/ask', show: User.loggedIn()},
-                {title: 'Category', to: '/category', show: User.loggedIn()},
+                {title: 'Category', to: '/category', show: User.admin()},
                 {title: 'Logout', to: '/logout', show: User.loggedIn()},
                 {title: 'Login', to: '/login', show: !User.loggedIn()},
                 

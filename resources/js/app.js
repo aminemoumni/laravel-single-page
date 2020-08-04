@@ -8,10 +8,41 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import Vue from 'vue'
+
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css';
-
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 Vue.use(Vuetify)
+export default new Vuetify({
+    icons: {
+      iconfont: 'md',
+    },
+  })
+
+import VueSimplemde from 'vue-simplemde'
+import md from 'marked'
+import 'simplemde/dist/simplemde.min.css'
+Vue.component('vue-simplemde', VueSimplemde)
+window.md = md
+
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+Vue.use(Loading);
+
+import Swal from 'sweetalert2'
+window.Swal = Swal
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
+window.Toast = Toast;
 
 import User from './Helpers/User'
 window.User = User
