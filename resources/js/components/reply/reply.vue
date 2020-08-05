@@ -4,6 +4,8 @@
             <v-card-title>
                 <div class="headline">{{data.user }}</div>
                 <div class="ml-2"> {{data.created_at}}</div>
+                <v-spacer></v-spacer>
+                <app-like :content="data"></app-like>
             </v-card-title>
             <v-divider></v-divider>
             <app-edit-reply 
@@ -28,6 +30,7 @@
 </template>
 <script>
 import edireply from './editReply'
+import like from '../likes/like'
 export default {
     props: ['data', 'slug'],
     data() {
@@ -86,7 +89,8 @@ export default {
         }
     },
     components: {
-        appEditReply: edireply
+        appEditReply: edireply,
+        appLike: like,
     },
 
     created(){
