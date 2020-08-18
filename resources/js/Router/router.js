@@ -10,20 +10,22 @@ import Home from '../components/AppHome';
 import Forum from '../components/Forum/forum';
 import Read from '../components/Forum/Read';
 import Create from '../components/Forum/create';
-import CreateCategory from '../components/Category/create'
+import CreateCategory from '../components/Category/create';
+import parallex from '../components/parallex'
 const router = new VueRouter({
     mode: 'history',
     routes: [
-        // 
-        //     path: '/',
-        //     name: 'home',
-        //     component: Home,
-        // },
+        {
+            path: '/',
+            name: 'home',
+            component: parallex,
+        },
         {
             path: '/login',
             name: 'login',
             component: Login
         },
+        
         {
             path: '/signup',
             name: 'signup',
@@ -37,19 +39,40 @@ const router = new VueRouter({
         {
             path: '/forum',
             name: 'forum',
-            component: Forum
+            component: Forum,
+            beforeEnter (to, from, next) {
+                if(!User.loggedIn()){
+                   return next({name: 'login'})
+                   
+                }
+                next()
+            },
 
         },
         {
             path: '/question/:slug',
             name: 'read',
-            component: Read
+            component: Read,
+            beforeEnter (to, from, next) {
+                if(!User.loggedIn()){
+                   return next({name: 'login'})
+                   
+                }
+                next()
+            },
 
         },
         {
             path: '/ask',
             name: 'create',
-            component: Create
+            component: Create,
+            beforeEnter (to, from, next) {
+                if(!User.loggedIn()){
+                   return next({name: 'login'})
+                   
+                }
+                next()
+            },
 
         },
         {

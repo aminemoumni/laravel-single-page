@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Auth;
 
 Route::apiResource('/question', 'QuestionController');
 Route::apiResource('/category', 'CategoryController');
